@@ -6,7 +6,7 @@
 
 $(function() {
     $('canvas').drawImage({
-       source: '../Img/mexicain.png',
+       source: './Img/Mexicain.png',
        x: 20, y: 20,
        scale: 0.25
     });
