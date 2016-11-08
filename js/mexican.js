@@ -16,7 +16,7 @@ function Mexican() {
     /* Fields */
     this.picture = "";
     this.life = MAX_LIFE;
-    this.beer = MAX_BEER;
+    this.lifeUp = MAX_BEER;
     this.scale = DEFAULT_SCALE;
     this.bullet = MAX_BULLET;
     this.position = {w: 0, h: 0};
@@ -47,11 +47,11 @@ function Mexican() {
     };
 
     /**
-     * Get number of beer
+     * Get number of lifeUp
      * @returns {Number|MAX_BEER}
      */
-    this.getBeer = function() {
-        return this.beer;
+    this.getLifeUp = function() {
+        return this.lifeUp;
     };
     
     /**
@@ -86,12 +86,12 @@ function Mexican() {
     };
     
     /**
-     * Set beer
-     * @param {Number} param_newBeer New beer number
+     * Set lifeUp
+     * @param {Number} param_newLifeUp New lifeUp number
      */
-    this.setBeer = function(param_newBeer) {
-        if (param_newBeer >= 0 && param_newBeer <= MAX_BEER)
-            this.beer = param_newBeer;
+    this.setLifeUp = function(param_newLifeUp) {
+        if (param_newLifeUp >= 0 && param_newLifeUp <= MAX_BEER)
+            this.lifeUp = param_newLifeUp;
     };
 
     /* Methods */
@@ -106,13 +106,13 @@ function Mexican() {
     };
     
     /**
-     * Use beer for regenerate a tacos
+     * Use lifeUp for regenerate a tacos
      */
-    this.takeBeer = function() {
-        if (this.getBeer() > 0)
+    this.takeLifeUp = function() {
+        if (this.getLifeUp() > 0)
         {
             this.setLife(this.getLife() + 1);
-            this.setBeer(this.getBeer() - 1);
+            this.setLifeUp(this.getLifeUp() - 1);
         }
     };
     
@@ -132,7 +132,7 @@ function Mexican() {
      */
     this.toString = function() {
         infoMexican = "Position : " + this.getPosition().x + ", " + this.getPosition().y + "\n";
-        infoMexican += "Life : " + this.getLife() + "\nBeer : " + this.getBeer() + "\nPicture : " + this.getPicture() + "\nScale : " + this.getScale() + "\n";
+        infoMexican += "Life : " + this.getLife() + "\nLifeUp : " + this.getLifeUp() + "\nPicture : " + this.getPicture() + "\nScale : " + this.getScale() + "\n";
         infoMexican += "Bullets: " + this.getBullet();
         
         return infoMexican;
