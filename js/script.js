@@ -6,27 +6,33 @@
 
 $(function() {
     mex = new Mexican();
+    mex.initialize({x: 10, y: 100}, './Img/Mexicain.png');
     
-    $(document).keypress(function(e) {
-       var pressedKey = e.which || e.keyCode;
-       
-       if (pressedKey === 119) {
-            alert("Hello");
-       }
+    
+    setInterval(function() {
+        $('canvas').clearCanvas();
+        mex.draw($('canvas'));
+    }, 1);
        
     });
   //  mex.initialize({x: 10, y: 10}, './Img/Mexicain.png');
  //   mex.draw($('canvas'));
-    /*
-    $('#information').text(mex.toString());
-    $('#lose').on('click', function() {
-        mex.setLife(mex.getLife() - 1);
-        $('#information').text(mex.toString());
-    });
     
-    $('#health').on('click', function() {
-        mex.takeBeer();
-        $('#information').text(mex.toString());
-    });*/
+    $(document).keypress(function(k) {
+        var pressedKey = k.which || k.keyCode;
+        moving = {x: 0, y: 0};
+
+        if (pressedKey === 119) {
+            //mex.setPosition({x: mex.getPosition().x, y: mex.getPosition().y - 1});
+            moving.y = -1;
+        }
+        
+        if (pressedKey === 115) {
+            moving.y = 1;
+            //mex.setPosition({x: mex.getPosition().x, y: mex.getPosition().y + 1});
+        }
+        
+        mex.move($('canvas'), moving);
+    });
 });
 

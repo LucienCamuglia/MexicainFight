@@ -12,6 +12,7 @@ function Mexican() {
     MAX_BEER = 3;
     MAX_BULLET = 5;
     DEFAULT_SCALE = 0.25;
+    DEFAULT_SPEED = 1;
 
     /* Fields */
     this.picture = "";
@@ -20,6 +21,7 @@ function Mexican() {
     this.scale = DEFAULT_SCALE;
     this.bullet = MAX_BULLET;
     this.position = {w: 0, h: 0};
+    this.speed = DEFAULT_SPEED;
 
     /* Getter */
     /**
@@ -28,6 +30,14 @@ function Mexican() {
      */
     this.getPosition = function() {
         return this.position;
+    };
+    
+    /**
+     * Get Mexican speed
+     * @returns {Number|DEFAULT_SPEED}
+     */
+    this.getSpeed = function() {
+        return this.speed;
     };
     
     /**
@@ -80,9 +90,21 @@ function Mexican() {
             this.life = param_newLife;
     };
     
+    /**
+     * Set number of bullet
+     * @param {Numeric} param_newBullet Number of bullet
+     */
     this.setBullet = function(param_newBullet) {
         if (param_newBullet >= 0 && param_newBullet <= MAX_BULLET)
             this.bullet = param_newBullet;
+    };
+    
+    /**
+     * Set the new position
+     * @param {Numeric} param_newPosition Position in {x, y}
+     */
+    this.setPosition = function(param_newPosition) {
+        this.position = param_newPosition;
     };
     
     /**
@@ -136,6 +158,19 @@ function Mexican() {
         infoMexican += "Bullets: " + this.getBullet();
         
         return infoMexican;
+    };
+    
+    /**
+     * Move the mexican on the y axe
+     * @param {Canvas} ctx
+     * @param {Object} moving Moving property in {x, y}
+     */
+    this.move = function(ctx, moving) {
+        var positionY = this.getPosition().y + moving.y * this.getSpeed();
+        pos = this.getPosition();
+        pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight - 200)) ? positionY : pos.y;
+        
+        this.setPosition(pos);
     };
 
     /**
