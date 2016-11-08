@@ -10,6 +10,7 @@ function Mexican() {
     /* Constante*/
     MAX_LIFE = 4;
     MAX_BEER = 3;
+    MAX_BULLET = 5;
     DEFAULT_SCALE = 0.25;
 
     /* Fields */
@@ -17,6 +18,7 @@ function Mexican() {
     this.life = MAX_LIFE;
     this.beer = MAX_BEER;
     this.scale = DEFAULT_SCALE;
+    this.bullet = MAX_BULLET;
     this.position = {w: 0, h: 0};
 
     /* Getter */
@@ -53,6 +55,14 @@ function Mexican() {
     };
     
     /**
+     * Get number of bullet
+     * @returns {MAX_BULLET|Number}
+     */
+    this.getBullet = function() {
+        return this.bullet;
+    };
+    
+    /**
      * Get path picture
      * @returns {String}
      */
@@ -69,6 +79,11 @@ function Mexican() {
         if (param_newLife >= 0 && param_newLife <= MAX_LIFE)
             this.life = param_newLife;
     };
+    
+    this.setBullet = function(param_newBullet) {
+        if (param_newBullet >= 0 && param_newBullet <= MAX_BULLET)
+            this.bullet = param_newBullet;
+    }
     
     /**
      * Set beer
@@ -102,12 +117,23 @@ function Mexican() {
     };
     
     /**
+     * Shoot a bullet
+     */
+    this.shoot = function() {
+        if (this.getBullet() > 0)
+        {
+            this.setBullet(this.getBullet() - 1);
+        }
+    };
+    
+    /**
      * Information of the object
      * @returns {infoMexican|String}
      */
     this.toString = function() {
         infoMexican = "Position : " + this.getPosition().x + ", " + this.getPosition().y + "\n";
-        infoMexican += "Life : " + this.getLife() + "\nBeer : " + this.getBeer() + "\nPicture : " + this.getPicture() + "\nScale : " + this.getScale(); 
+        infoMexican += "Life : " + this.getLife() + "\nBeer : " + this.getBeer() + "\nPicture : " + this.getPicture() + "\nScale : " + this.getScale() + "\n";
+        infoMexican += "Bullets: " + this.getBullet();
         
         return infoMexican;
     };
