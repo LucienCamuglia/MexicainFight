@@ -13,8 +13,7 @@ $(function() {
         $('canvas').clearCanvas();
         mex.draw($('canvas'));
     }, 1);
-       
-    });
+    
   //  mex.initialize({x: 10, y: 10}, './Img/Mexicain.png');
  //   mex.draw($('canvas'));
     
