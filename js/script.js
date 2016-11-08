@@ -6,8 +6,17 @@
 
 $(function() {
     mex = new Mexican();
-    mex.initialize({x: 10, y: 10}, './Img/Mexicain.png');
-    mex.draw($('canvas'));
+    
+    $(document).keypress(function(e) {
+       var pressedKey = e.which || e.keyCode;
+       
+       if (pressedKey === 119) {
+            alert("Hello");
+       }
+       
+    });
+  //  mex.initialize({x: 10, y: 10}, './Img/Mexicain.png');
+ //   mex.draw($('canvas'));
     /*
     $('#information').text(mex.toString());
     $('#lose').on('click', function() {

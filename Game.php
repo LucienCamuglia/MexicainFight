@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 if (isset($_POST["player1"])) {
-    $currentPlayer = "player1";
+    $currentPlayer = "player1";    
 } elseif (isset($_POST["player2"])) {
     $currentPlayer = "player2";
 } else {
@@ -10,6 +10,14 @@ if (isset($_POST["player1"])) {
 $tequila = 3;
 $tacos = 4;
 $bullet = 5;
+$player1x=10;
+$sh = shmop_open($player1x, "w", 0777, 250);
+shmop_write($sh, $player1x, 0);
+
+
+if ($sh = shmop_open($player1x, "a", 0, 0) != FALSE){
+    shmop_read($sh, $player1x, 24);
+}
 ?>
 <html>
     <head>
@@ -23,10 +31,21 @@ $bullet = 5;
         <script src="./js/mexican.js" type="text/javascript"></script>
         <script src="./js/bullet.js" type="text/javascript"></script>
         <script src="./js/script.js" type="text/javascript"></script>
-
+        <script>
+            function init() {
+                var player1x = <?php echo $player1x; ?>;
+                player1 = new Mexican();
+                player1.initialize({x: player1x, y: 10}, './Img/Mexicain.png');
+                player1.draw($('canvas'));
+                
+                player2 = new Mexican();
+                player2.initialize({x: 290, y: 10}, './Img/Mexicain2.png');
+                player2.draw($('canvas'));
+            }
+        </script>
         <title>Mexican shooter</title>
     </head>
-    <body id="game">
+    <body id="game" onload="init()">
         <h1 class="center">Mexican shooter</h1>
         <div class="InfoZone">
             <div class="LifeUpZone">
@@ -52,7 +71,7 @@ $bullet = 5;
                 echo '</ul>';
                 ?>
             </div>
-            
+
             <div class="bulletZone">
                 <?php
                 echo '<ul>';
@@ -65,9 +84,9 @@ $bullet = 5;
                 ?>
             </div>
         </div>
-        
+
         <canvas id="gameBoard"></canvas>
-        
+
         <div class="InfoZone">
             <div class="LifeUpZone">
                 <?php
@@ -92,7 +111,7 @@ $bullet = 5;
                 echo '</ul>';
                 ?>
             </div>
-            
+
             <div class="bulletZone">
                 <?php
                 echo '<ul>';
