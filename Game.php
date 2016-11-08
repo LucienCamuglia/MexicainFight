@@ -7,7 +7,7 @@ if (isset($_POST["player1"])) {
 } else {
     header("location: index.php");
 }
-$beer = 3;
+$tequila = 3;
 $tacos = 4;
 $bullet = 5;
 ?>
@@ -28,20 +28,20 @@ $bullet = 5;
     </head>
     <body id="game">
         <h1 class="center">Mexican shooter</h1>
-        <div id="InfoZone">
-            <div id="beerZone">
+        <div class="InfoZone">
+            <div class="LifeUpZone">
                 <?php
                 echo '<ul>';
-                for ($i = 0; $i < $beer; $i++) {
+                for ($i = 0; $i < $tequila; $i++) {
                     echo '<li>';
-                    echo '<img src="./Img/beer.png" alt="LifeUp"/>';
+                    echo '<img src="./Img/tequila.png" alt="LifeUp"/>';
                     echo '</li>';
                 }
                 echo '</ul>';
                 ?>
             </div>
 
-            <div id="tacosZone">
+            <div class="tacosZone">
                 <?php
                 echo '<ul>';
                 for ($i = 0; $i < $tacos; $i++) {
@@ -53,7 +53,7 @@ $bullet = 5;
                 ?>
             </div>
             
-            <div id="bulletZone">
+            <div class="bulletZone">
                 <?php
                 echo '<ul>';
                 for ($i = 0; $i < $bullet; $i++) {
@@ -68,20 +68,20 @@ $bullet = 5;
         
         <canvas id="gameBoard"></canvas>
         
-        <div id="InfoZone">
-            <div id="beerZone">
+        <div class="InfoZone">
+            <div class="LifeUpZone">
                 <?php
                 echo '<ul>';
-                for ($i = 0; $i < $beer; $i++) {
+                for ($i = 0; $i < $tequila; $i++) {
                     echo '<li>';
-                    echo '<img src="./Img/beer.png" alt="LifeUp"/>';
+                    echo '<img src="./Img/tequila.png" alt="LifeUp"/>';
                     echo '</li>';
                 }
                 echo '</ul>';
                 ?>
             </div>
 
-            <div id="tacosZone">
+            <div class="tacosZone">
                 <?php
                 echo '<ul>';
                 for ($i = 0; $i < $tacos; $i++) {
@@ -93,7 +93,7 @@ $bullet = 5;
                 ?>
             </div>
             
-            <div id="bulletZone">
+            <div class="bulletZone">
                 <?php
                 echo '<ul>';
                 for ($i = 0; $i < $bullet; $i++) {

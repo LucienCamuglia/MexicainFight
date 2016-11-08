@@ -31,19 +31,20 @@ body{
     text-align: center;
 }
 
-#beerZone ul, #beerZone ul li, #tacosZone ul, #tacosZone ul li,#bulletZone ul, #bulletZone ul li{
+.LifeUpZone ul, .LifeUpZone ul li, .tacosZone ul, .tacosZone ul li,.bulletZone ul, .bulletZone ul li{
     float: left;
     display: inline;
     list-style-type: none;
+    margin-left: 2px;
 
 }
 
-#tacosZone ul li img{
+.tacosZone ul li img{
     width: 52px;
     //height: auto;
 }
 
-#InfoZone{
+.InfoZone{
     float: left;
     width: 17%;
 }
