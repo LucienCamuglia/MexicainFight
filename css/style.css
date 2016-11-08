@@ -17,15 +17,33 @@ body{
     min-height: 100%;
 }
 
-h1{
-    text-align: center;
-}
-
 #gameBoard{
-    margin-left: 18.75%;
+    margin-left: 1%;
     width: 62.5%;
     height: 600px;
     max-height: 100%;
     border: solid black 1px;
+    display: inline;
+    float: left;
 }
 
+.center{
+    text-align: center;
+}
+
+#beerZone ul, #beerZone ul li, #tacosZone ul, #tacosZone ul li,#bulletZone ul, #bulletZone ul li{
+    float: left;
+    display: inline;
+    list-style-type: none;
+
+}
+
+#tacosZone ul li img{
+    width: 52px;
+    //height: auto;
+}
+
+#InfoZone{
+    float: left;
+    width: 17%;
+}

@@ -20,7 +20,14 @@ and open the template in the editor.
         <title>Mexican shooter</title>
     </head>
     <body>
-        <h1>Mexican shooter</h1>
-        <canvas id="gameBoard"></canvas>
+        <div class="center">
+            <h1>Mexican shooter</h1>
+            <h2>Welcome</h2>
+            <p>Witch mexican are you ?</p>
+            <form action="./Game.php" method="post">
+                <input type="submit" value="El Chapo" name="player1">
+                <input type="submit" value="El Guero" name="player2">
+            </form>
+        </div>
     </body>
 </html>
