@@ -83,7 +83,7 @@ function Mexican() {
     this.setBullet = function(param_newBullet) {
         if (param_newBullet >= 0 && param_newBullet <= MAX_BULLET)
             this.bullet = param_newBullet;
-    }
+    };
     
     /**
      * Set beer
