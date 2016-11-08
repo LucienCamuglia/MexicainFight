@@ -5,10 +5,19 @@
  */
 
 $(function() {
-    $('canvas').drawImage({
-       source: './Img/Mexicain.png',
-       x: 20, y: 20,
-       scale: 0.25
+    mex = new Mexican();
+    mex.initialize({x: 10, y: 10}, './Img/Mexicain.png');
+    mex.draw($('canvas'));
+    /*
+    $('#information').text(mex.toString());
+    $('#lose').on('click', function() {
+        mex.setLife(mex.getLife() - 1);
+        $('#information').text(mex.toString());
     });
+    
+    $('#health').on('click', function() {
+        mex.takeBeer();
+        $('#information').text(mex.toString());
+    });*/
 });
 
