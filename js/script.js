@@ -24,12 +24,14 @@ $(function() {
         if (pressedKey === 119) {
             //mex.setPosition({x: mex.getPosition().x, y: mex.getPosition().y - 1});
             moving.y = -1;
-        }
-        
-        if (pressedKey === 115) {
+        } else if (pressedKey === 115) {
             moving.y = 1;
             //mex.setPosition({x: mex.getPosition().x, y: mex.getPosition().y + 1});
+        } else {
+            alert(pressedKey.toString());
         }
+        
+        
         
         mex.move($('canvas'), moving);
     });
