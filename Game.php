@@ -11,13 +11,7 @@ $tequila = 3;
 $tacos = 4;
 $bullet = 5;
 $player1x=10;
-$sh = shmop_open($player1x, "w", 0777, 250);
-shmop_write($sh, $player1x, 0);
 
-
-if ($sh = shmop_open($player1x, "a", 0, 0) != FALSE){
-    shmop_read($sh, $player1x, 24);
-}
 ?>
 <html>
     <head>
