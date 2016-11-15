@@ -12,14 +12,12 @@ $tacos = 4;
 $bullet = 5;
 $player1x = 10;
 
-if (!file_exists("./GameFiles/$currentPlayer.xml")) {
-    copy("./GameFiles/DefaultMexican.xml", "./GameFiles/$currentPlayer.xml");
+if (!file_exists("./GameFiles/$currentPlayer.json")) {
+    copy("./GameFiles/DefaultMexican.xml", "./GameFiles/$currentPlayer.json");
 }
 
-if (file_exists("./GameFiles/player1.xml") && (file_exists("./GameFiles/player2.xml"))) {
-   $ready = true;
-       $player1Options = simplexml_load_file("./GameFiles/player1.xml");
-    $player2Options = simplexml_load_file("./GameFiles/player2.xml");
+if (file_exists("./GameFiles/player1.json") && (file_exists("./GameFiles/player2.json"))) {
+   $ready = true;      
 } else {
     $ready = false;
 
@@ -39,29 +37,11 @@ if (file_exists("./GameFiles/player1.xml") && (file_exists("./GameFiles/player2.
         <script src="./js/bullet.js" type="text/javascript"></script>
         <script src="./js/script.js" type="text/javascript"></script>
         <script>
-            function init() {
-                if (<?php echo $ready; ?>) {
-                    player1 = new Mexican();
-                    player1.initialize({x: <?php echo $player1Options->position->x;?>, y: <?php echo $player1Options->position->y;?>}, './Img/Mexicain.png');
-                    player1.draw($('canvas'));
 
-                    player2 = new Mexican();
-                    player2.initialize({x: <?php echo $player2Options->position->x;?>, y: <?php echo $player2Options->position->y;?>}, './Img/Mexicain2.png');
-                    player2.draw($('canvas'));
-                }
-                DisplayModal();
-                
-            }
-
-            function DisplayModal() {
-                if (!<?php echo $ready; ?>) {
-                    $(".modal-popup").css("display : none");                    
-                }
-            }
         </script>
         <title>Mexican shooter</title>
     </head>
-    <body id="game" onload="init()">
+    <body id="game" >
         <div class="modal-popup">
             <p>Waiting for other player, please wait</p>
         </div>

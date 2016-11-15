@@ -22,9 +22,25 @@ $(function() {
  * Initialize all element in the game
  */
 function initialize() {
-    mex = new Mexican();
-    mex.initialize({x: 10, y: 100}, './Img/Mexicain.png');
+    $.ajax({
+        url: './php/GetPlayerOptions.php',
+        type: 'GET',
+        data: {playersReady: "yes"},
+        success: function(data)
+        {
+            if (data) {
+
+                data = JSON.parse(data);//TIDO
+                mex = new Mexican();
+                mex.initialize({x: data[0][0]["x"], y: data[0][0]["y"]}, './Img/Mexicain.png');
     lifeUpTaking = false;
+                mex2 = new Mexican();
+                mex2.initialize({x: data[1][0]["x"], y: data[1][0]["y"]}, './Img/Mexicain.png');
+
+            }
+        }
+    });
+
 }
 
 /**
@@ -32,14 +48,16 @@ function initialize() {
  */
 function draw() {
     $('canvas').clearCanvas();
-    mex.draw($('canvas'));
+    if (mex != null)
+        mex.draw($('canvas'));
 }
 
 /**
  * Update the game
  */
 function update() {
-    mex.move($('canvas'));
+    if (mex != null)
+        mex.move($('canvas'));
 }
 
 /*

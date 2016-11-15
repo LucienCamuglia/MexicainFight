@@ -1,0 +1,14 @@
+{
+  "Bullet": {
+    "CreatedTime": "0",
+    "LifeTime": "0",
+    "Startposition": {
+      "x": "0",
+      "y": "0"
+    },
+    "endPosition": {
+      "x": "0",
+      "y": "0"
+    }
+  }
+}
