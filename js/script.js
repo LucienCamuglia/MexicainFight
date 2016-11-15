@@ -6,6 +6,7 @@
 
 /*Global variable*/
 var mex;
+var mex2;
 
 $(function() {
 
@@ -32,7 +33,8 @@ function initialize() {
 
                 data = JSON.parse(data);//TIDO
                 mex = new Mexican();
-                mex.initialize({x: data[0][0]["x"], y: data[0][0]["y"]}, './Img/Mexicain.png');
+    mex2 = new Mexican();
+    
     lifeUpTaking = false;
                 mex2 = new Mexican();
                 mex2.initialize({x: data[1][0]["x"], y: data[1][0]["y"]}, './Img/Mexicain.png');
@@ -58,6 +60,24 @@ function draw() {
 function update() {
     if (mex != null)
         mex.move($('canvas'));
+
+    updateDisplay(mex, $(".InfoZone"));    
+    updateDisplay(mex2, $(".InfoZoneEnemy"));
+
+}
+
+/**
+ * Update information display
+ * @param {Mexican} mexican Mexican which refreshed
+ * @param {Object} zone Zone where display is done
+ */
+function updateDisplay(mexican, zone) {
+    $.ajax({url: "../php/displayInformation.php",
+        method: "POST",
+        data : {drink: mexican.getLifeUp(), tacos : mexican.getLife(), bullet: mexican.getBullet()},
+        success: function(result) {
+            zone.html(result);
+        }});
 }
 
 /*
@@ -65,6 +85,11 @@ function update() {
  */
 $(document).keydown(function(k) {
     mex.keydownEvent(k);
+
+    if ((k.which | k.KeyCode) === 32)
+    {
+        mex.shoot();
+    }
 });
 
 /*

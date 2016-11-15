@@ -14,6 +14,7 @@ function Mexican() {
     DEFAULT_SCALE = 0.25;
     DEFAULT_SPEED = 0.5;
     DEFAULT_DIRECTION = {x: 0, y: 0};
+    DEFAULT_SIZE = {w: 51, h: 69};
 
     /* Fields */
     this.picture = "";
@@ -22,7 +23,7 @@ function Mexican() {
     this.scale = DEFAULT_SCALE;
     this.bullet = MAX_BULLET;
     this.position = {x: 0, y: 0};
-    this.size = {w: 51, h: 69};
+    this.size = DEFAULT_SIZE;
     this.speed = DEFAULT_SPEED;
     this.direction = DEFAULT_DIRECTION;
     this.lifeUpdTaking = false;

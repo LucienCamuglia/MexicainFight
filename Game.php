@@ -7,10 +7,10 @@ if (isset($_POST["player1"])) {
 } else {
     header("location: index.php");
 }
-$tequila = 3;
+/*$tequila = 3;
 $tacos = 4;
 $bullet = 5;
-$player1x = 10;
+$player1x = 10;*/
 
 if (!file_exists("./GameFiles/$currentPlayer.json")) {
     copy("./GameFiles/DefaultMexican.xml", "./GameFiles/$currentPlayer.json");
@@ -47,81 +47,81 @@ if (file_exists("./GameFiles/player1.json") && (file_exists("./GameFiles/player2
         </div>
         <h1 class="center">Mexican shooter</h1>
         <div class="InfoZone">
-            <div class="LifeUpZone">
+            <!--<div class="LifeUpZone">
                 <?php
-                echo '<ul>';
+                /*echo '<ul>';
                 for ($i = 0; $i < $tequila; $i++) {
                     echo '<li>';
                     echo '<img src="./Img/tequila.png" alt="LifeUp"/>';
                     echo '</li>';
                 }
-                echo '</ul>';
+                echo '</ul>';*/
                 ?>
             </div>
 
             <div class="tacosZone">
                 <?php
-                echo '<ul>';
+                /*echo '<ul>';
                 for ($i = 0; $i < $tacos; $i++) {
                     echo '<li>';
                     echo '<img src="./Img/tacos.png" alt="Life"/>';
                     echo '</li>';
                 }
-                echo '</ul>';
+                echo '</ul>';*/
                 ?>
             </div>
 
             <div class="bulletZone">
                 <?php
-                echo '<ul>';
+                /*echo '<ul>';
                 for ($i = 0; $i < $bullet; $i++) {
                     echo '<li>';
                     echo '<img src="./Img/bulletReload.png" alt="shots"/>';
                     echo '</li>';
                 }
-                echo '</ul>';
+                echo '</ul>';*/
                 ?>
-            </div>
+            </div>-->
         </div>
 
         <canvas id="gameBoard"></canvas>
 
-        <div class="InfoZone">
-            <div class="LifeUpZone">
+        <div class="InfoZoneEnemy">
+            <!-- <div class="LifeUpZone">
                 <?php
-                echo '<ul>';
+                /*echo '<ul>';
                 for ($i = 0; $i < $tequila; $i++) {
                     echo '<li>';
                     echo '<img src="./Img/tequila.png" alt="LifeUp"/>';
                     echo '</li>';
                 }
-                echo '</ul>';
+                echo '</ul>';*/
                 ?>
             </div>
 
             <div class="tacosZone">
                 <?php
-                echo '<ul>';
+                /*echo '<ul>';
                 for ($i = 0; $i < $tacos; $i++) {
                     echo '<li>';
                     echo '<img src="./Img/tacos.png" alt="Life"/>';
                     echo '</li>';
                 }
-                echo '</ul>';
+                echo '</ul>';*/
                 ?>
             </div>
 
             <div class="bulletZone">
                 <?php
-                echo '<ul>';
+                /*echo '<ul>';
                 for ($i = 0; $i < $bullet; $i++) {
                     echo '<li>';
                     echo '<img src="./Img/bulletReload.png" alt="shots"/>';
                     echo '</li>';
                 }
-                echo '</ul>';
+                echo '</ul>';*/
                 ?>
-            </div>
+            </div>-->
         </div>
     </body>
 </html>
