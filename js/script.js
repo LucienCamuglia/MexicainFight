@@ -4,36 +4,65 @@
  * and open the template in the editor.
  */
 
-$(function() {
-    mex = new Mexican();
-    mex.initialize({x: 10, y: 100}, './Img/Mexicain.png');
-    
-    
-    setInterval(function() {
-        $('canvas').clearCanvas();
-        mex.draw($('canvas'));
-    }, 1);
-    
-  //  mex.initialize({x: 10, y: 10}, './Img/Mexicain.png');
- //   mex.draw($('canvas'));
-    
-    $(document).keypress(function(k) {
-        var pressedKey = k.which || k.keyCode;
-        moving = {x: 0, y: 0};
+/*Global variable*/
+var mex;
 
-        if (pressedKey === 119) {
-            //mex.setPosition({x: mex.getPosition().x, y: mex.getPosition().y - 1});
-            moving.y = -1;
-        } else if (pressedKey === 115) {
-            moving.y = 1;
-            //mex.setPosition({x: mex.getPosition().x, y: mex.getPosition().y + 1});
-        } else {
-            alert(pressedKey.toString());
-        }
-        
-        
-        
-        mex.move($('canvas'), moving);
-    });
+$(function() {
+
+    initialize();
+
+    /* Main gameloop */
+    setInterval(function() {
+        update();
+        draw();
+    }, 1);
 });
 
+/**
+ * Initialize all element in the game
+ */
+function initialize() {
+    mex = new Mexican();
+    mex.initialize({x: 10, y: 100}, './Img/Mexicain.png');
+}
+
+/**
+ * Draw all element of the game
+ */
+function draw() {
+    $('canvas').clearCanvas();
+    mex.draw($('canvas'));
+}
+
+/**
+ * Update the game
+ */
+function update() {
+    mex.move($('canvas'));
+}
+
+/**
+ * Keydown evenement
+ */
+$(document).keydown(function(k) {
+    var pressedKey = k.which || k.keyCode;
+
+    if (pressedKey === 87) {
+        mex.setDirectionY(-1);
+    } else if (pressedKey === 83) {
+        mex.setDirectionY(1);
+    }
+});
+
+/**
+ * Keyup evenement
+ */
+$(document).keyup(function(k) {
+    var pressedKey = k.which || k.keyCode;
+
+    if (pressedKey === 87) {
+        mex.setDirectionY(0);
+    } else if (pressedKey === 83) {
+        mex.setDirectionY(0);
+    }
+});

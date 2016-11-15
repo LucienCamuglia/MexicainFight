@@ -12,7 +12,8 @@ function Mexican() {
     MAX_BEER = 3;
     MAX_BULLET = 5;
     DEFAULT_SCALE = 0.25;
-    DEFAULT_SPEED = 1;
+    DEFAULT_SPEED = 0.5;
+    DEFAULT_DIRECTION = {x: 0, y: 0};
 
     /* Fields */
     this.picture = "";
@@ -20,8 +21,10 @@ function Mexican() {
     this.lifeUp = MAX_BEER;
     this.scale = DEFAULT_SCALE;
     this.bullet = MAX_BULLET;
-    this.position = {w: 0, h: 0};
+    this.position = {x: 0, y: 0};    
+    this.size = {w: 51, h: 69};
     this.speed = DEFAULT_SPEED;
+    this.direction = DEFAULT_DIRECTION;
 
     /* Getter */
     /**
@@ -79,8 +82,33 @@ function Mexican() {
     this.getPicture = function () {
         return this.picture;
     };
+    
+    /**
+     * Get the sprite size
+     * @returns {Mexican.size}
+     */
+    this.getSize = function() {
+        return this.size;
+    };
+    
+    /**
+     * Get direction
+     * @returns {Numeric|DEFAULT_DIRECTION}
+     */
+    this.getDirection = function() {
+        return this.direction;
+    };
 
     /* Setter */
+    
+    /**
+     * Set the Y direction
+     * @param {Numeric} param_dirY Y value
+     */
+    this.setDirectionY = function(param_dirY) {
+        this.direction = {x: this.getDirection().x, y: param_dirY};
+    };
+    
     /**
      * Set mexican life
      * @param {Number} param_newLife New mexican life
@@ -155,7 +183,9 @@ function Mexican() {
     this.toString = function() {
         infoMexican = "Position : " + this.getPosition().x + ", " + this.getPosition().y + "\n";
         infoMexican += "Life : " + this.getLife() + "\nLifeUp : " + this.getLifeUp() + "\nPicture : " + this.getPicture() + "\nScale : " + this.getScale() + "\n";
-        infoMexican += "Bullets: " + this.getBullet();
+        infoMexican += "Bullets: " + this.getBullet() + "\n";
+        infoMexican += "Direction: " + this.getDirection().x + ", " + this.getDirection().y + "\n";
+        infoMexican += "Size : " + this.getSize().w + ", " + this.getSize().h;
         
         return infoMexican;
     };
@@ -163,12 +193,11 @@ function Mexican() {
     /**
      * Move the mexican on the y axe
      * @param {Canvas} ctx
-     * @param {Object} moving Moving property in {x, y}
      */
-    this.move = function(ctx, moving) {
-        var positionY = this.getPosition().y + moving.y * this.getSpeed();
+    this.move = function(ctx) {
+        var positionY = this.getPosition().y + this.getDirection().y * this.getSpeed();
         pos = this.getPosition();
-        pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight - 200)) ? positionY : pos.y;
+        pos.y = ((positionY >= ctx[0].clientTop) && (positionY <= ctx[0].clientHeight - 400)) ? positionY : pos.y;
         
         this.setPosition(pos);
     };
