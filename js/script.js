@@ -24,6 +24,7 @@ $(function() {
 function initialize() {
     mex = new Mexican();
     mex.initialize({x: 10, y: 100}, './Img/Mexicain.png');
+    lifeUpTaking = false;
 }
 
 /**
@@ -41,28 +42,16 @@ function update() {
     mex.move($('canvas'));
 }
 
-/**
+/*
  * Keydown evenement
  */
 $(document).keydown(function(k) {
-    var pressedKey = k.which || k.keyCode;
-
-    if (pressedKey === 87) {
-        mex.setDirectionY(-1);
-    } else if (pressedKey === 83) {
-        mex.setDirectionY(1);
-    }
+    mex.keydownEvent(k);
 });
 
-/**
+/*
  * Keyup evenement
  */
 $(document).keyup(function(k) {
-    var pressedKey = k.which || k.keyCode;
-
-    if (pressedKey === 87) {
-        mex.setDirectionY(0);
-    } else if (pressedKey === 83) {
-        mex.setDirectionY(0);
-    }
+    mex.keyupEvent(k);
 });
