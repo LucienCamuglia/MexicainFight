@@ -197,10 +197,10 @@ function Mexican() {
      * @param {Canvas} ctx
      */
     this.move = function(ctx) {
-        var positionY = this.getPosition().y + this.getDirection().y * this.getSpeed();
-        pos = this.getPosition();
-        //pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight - 400)) ? positionY : pos.y;
-        pos.y = positionY;
+        var positionY = parseFloat(this.getPosition().y) + this.getDirection().y * this.getSpeed();
+        pos = {x: this.getPosition().x, y: positionY};
+        //pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight)) ? positionY : pos.y;
+        //pos.y = positionY;
 
         this.setPosition(pos);
     };
@@ -239,9 +239,9 @@ function Mexican() {
         var pressedKey = key.which || key.keyCode;
 
         if (pressedKey === 87) {
-            this.setDirectionY(1);
+            this.setDirectionY(0);
         } else if (pressedKey === 83) {
-            this.setDirectionY(-1);
+            this.setDirectionY(0);
         }
 
         if (pressedKey === 68 && this.lifeUpTaking) {

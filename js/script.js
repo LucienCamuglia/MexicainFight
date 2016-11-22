@@ -7,15 +7,18 @@
 /*Global variable*/
 var mex;
 var mex2;
+var gameStarted;
 
 $(function() {
-
+    gameStarted = false;
     initialize();
 
     /* Main gameloop */
     setInterval(function() {
-        update();
-        draw();
+        if (gameStarted) {
+            update();
+            draw();
+        }
     }, 1);
 });
 
@@ -46,6 +49,8 @@ function initialize() {
                         lifeUpTaking = false;
                         mex2 = new Mexican();
                         mex2.initialize({x: data[1]["Mexican"]["position"]["x"], y: data[1]["Mexican"]["position"]["x"]}, './Img/Mexicain.png');
+                        
+                        gameStarted = true;
                     }
                 });
             }
