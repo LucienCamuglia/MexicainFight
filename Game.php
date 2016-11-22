@@ -13,7 +13,7 @@ $bullet = 5;
 $player1x = 10;*/
 
 if (!file_exists("./GameFiles/$currentPlayer.json")) {
-    copy("./GameFiles/DefaultMexican.xml", "./GameFiles/$currentPlayer.json");
+    copy("./GameFiles/DefaultMexican.json", "./GameFiles/$currentPlayer.json");
 }
 
 if (file_exists("./GameFiles/player1.json") && (file_exists("./GameFiles/player2.json"))) {

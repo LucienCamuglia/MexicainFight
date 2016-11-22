@@ -23,6 +23,8 @@ $(function() {
  * Initialize all element in the game
  */
 function initialize() {
+    mex = new Mexican();
+    mex2 = new Mexican();
     $.ajax({
         url: './php/GetPlayerOptions.php',
         type: 'GET',
@@ -30,15 +32,22 @@ function initialize() {
         success: function(data)
         {
             if (data) {
+                $.ajax({
+                    url: './php/GetPlayerOptions.php',
+                    type: 'GET',
+                    data: {playersOption: "yes"},
+                    success: function(data)
+                    {
+                        data = JSON.parse(data);//TIDO
+                        mex = new Mexican();
+                        mex.initialize({x: data[0]["Mexican"]["position"]["x"], y: data[0]["Mexican"]["position"]["y"]}, './Img/Mexicain.png');
 
-                data = JSON.parse(data);//TIDO
-                mex = new Mexican();
-    mex2 = new Mexican();
-    
-    lifeUpTaking = false;
-                mex2 = new Mexican();
-                mex2.initialize({x: data[1][0]["x"], y: data[1][0]["y"]}, './Img/Mexicain.png');
 
+                        lifeUpTaking = false;
+                        mex2 = new Mexican();
+                        mex2.initialize({x: data[1]["Mexican"]["position"]["x"], y: data[1]["Mexican"]["position"]["x"]}, './Img/Mexicain.png');
+                    }
+                });
             }
         }
     });
@@ -61,7 +70,7 @@ function update() {
     if (mex != null)
         mex.move($('canvas'));
 
-    updateDisplay(mex, $(".InfoZone"));    
+    updateDisplay(mex, $(".InfoZone"));
     updateDisplay(mex2, $(".InfoZoneEnemy"));
 
 }
@@ -72,9 +81,9 @@ function update() {
  * @param {Object} zone Zone where display is done
  */
 function updateDisplay(mexican, zone) {
-    $.ajax({url: "../php/displayInformation.php",
+    $.ajax({url: "./php/displayInformation.php",
         method: "POST",
-        data : {drink: mexican.getLifeUp(), tacos : mexican.getLife(), bullet: mexican.getBullet()},
+        data: {drink: mexican.getLifeUp(), tacos: mexican.getLife(), bullet: mexican.getBullet()},
         success: function(result) {
             zone.html(result);
         }});

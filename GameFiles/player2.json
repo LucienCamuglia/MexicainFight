@@ -1,0 +1,11 @@
+{
+  "Mexican": {
+    "life": "4",
+    "lifeUp": "3",
+    "bullet": "5",
+    "position": {
+      "x": "10",
+      "y": "10"
+    }
+  }
+}

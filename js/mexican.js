@@ -199,7 +199,8 @@ function Mexican() {
     this.move = function(ctx) {
         var positionY = this.getPosition().y + this.getDirection().y * this.getSpeed();
         pos = this.getPosition();
-        pos.y = ((positionY >= ctx[0].clientTop) && (positionY <= ctx[0].clientHeight - 400)) ? positionY : pos.y;
+        //pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight - 400)) ? positionY : pos.y;
+        pos.y = positionY;
 
         this.setPosition(pos);
     };
@@ -238,9 +239,9 @@ function Mexican() {
         var pressedKey = key.which || key.keyCode;
 
         if (pressedKey === 87) {
-            this.setDirectionY(0);
+            this.setDirectionY(1);
         } else if (pressedKey === 83) {
-            this.setDirectionY(0);
+            this.setDirectionY(-1);
         }
 
         if (pressedKey === 68 && this.lifeUpTaking) {
