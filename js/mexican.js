@@ -198,9 +198,8 @@ function Mexican() {
      */
     this.move = function(ctx) {
         var positionY = parseFloat(this.getPosition().y) + this.getDirection().y * this.getSpeed();
-        pos = {x: this.getPosition().x, y: positionY};
-        //pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight)) ? positionY : pos.y;
-        //pos.y = positionY;
+        pos = this.getPosition();
+        pos.y = ((positionY > ctx[0].clientTop) && (positionY < ctx[0].clientHeight)) ? positionY : pos.y;
 
         this.setPosition(pos);
     };

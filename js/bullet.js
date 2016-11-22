@@ -10,6 +10,8 @@ function Bullet() {
     this.damage = 1;
     this.position = {x: 0, y: 0};
     this.direction = {x: 1, y: 0};
+    this.scale = 1;
+
 
     /* GETTER */
     /**
@@ -44,7 +46,23 @@ function Bullet() {
         return this.picture;
     };
 
+    /**
+     * Get the scale
+     * @returns {Number}
+     */
+    this.getScale = function() {
+        return this.scale;
+    };
+
     /* SETTER */
+
+    /**
+     * Set the scale
+     * @param {numeric} param_scale Scale
+     */
+    this.setScale = function(param_scale) {
+        this.scale = param_scale;
+    };
     
     /**
      * Set bullet damage
@@ -53,7 +71,7 @@ function Bullet() {
     this.setDamage = function(param_damage) {
         this.damage = param_damage;
     };
-    
+
     /**
      * Set bullet position 
      * @param {Object} param_position Position in (x, y)
@@ -61,7 +79,7 @@ function Bullet() {
     this.setPosition = function(param_position) {
         this.position = param_position;
     };
-    
+
     /**
      * Set bullet direction
      * @param {Object} param_direction Direction in (x,y)
@@ -69,7 +87,7 @@ function Bullet() {
     this.setDirection = function(param_direction) {
         this.direction = param_direction;
     };
-    
+
     /**
      * Set bullet picture
      * @param {String} param_picture Picture path
@@ -77,10 +95,34 @@ function Bullet() {
     this.setPicture = function(param_picture) {
         this.picture = param_picture;
     };
-    
+
     /* METHODS */
+    /**
+     * Initialize a bullet
+     * @param {Object} param_position Position in {x,y}
+     * @param {String} param_picture Picture path
+     * @param {Object} param_direction Direction in {x,y}
+     * @param {Numeric} param_scale Scale
+     * @param {Numeric} param_damage Damage
+     */
+    this.initialize = function(param_position, param_picture, param_direction, param_scale, param_damage) {
+        this.setPosition(param_position);
+        this.setPicture(param_picture);
+        this.setDirection(param_direction);
+        this.setScale(param_scale);
+        this.setDamage(param_damage);
+    };
+
+    /**
+     * Draw the bullet
+     * @param {type} ctx
+     */
     this.draw = function(ctx) {
-        
-    }
+        ctx.drawImage({
+            source: this.getPicture(),
+            x: this.getPosition().x, y: this.getPosition().y,
+            scale: this.getScale()
+        });
+    };
 }
 

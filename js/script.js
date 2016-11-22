@@ -8,6 +8,7 @@
 var mex;
 var mex2;
 var gameStarted;
+var bullets = [];
 
 $(function() {
     gameStarted = false;
@@ -49,7 +50,7 @@ function initialize() {
                         lifeUpTaking = false;
                         mex2 = new Mexican();
                         mex2.initialize({x: data[1]["Mexican"]["position"]["x"], y: data[1]["Mexican"]["position"]["x"]}, './Img/Mexicain.png');
-                        
+
                         gameStarted = true;
                     }
                 });
@@ -66,6 +67,10 @@ function draw() {
     $('canvas').clearCanvas();
     if (mex != null)
         mex.draw($('canvas'));
+
+    bullets.forEach(function(b) {
+        b.draw($('canvas'));
+    });
 }
 
 /**
@@ -102,6 +107,10 @@ $(document).keydown(function(k) {
 
     if ((k.which | k.KeyCode) === 32)
     {
+        tmpBullet = new Bullet();
+        pos = {x: mex.getPosition().x, y: mex.getPosition().y};
+        tmpBullet.initialize(pos, "./Img/bullet.png", {x: 1, y: 0}, 1, 1);
+        bullets.push(tmpBullet);
         mex.shoot();
     }
 });
