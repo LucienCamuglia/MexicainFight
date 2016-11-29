@@ -12,6 +12,8 @@ function Mexican() {
     MAX_BEER = 3;
     MAX_BULLET = 5;
     DEFAULT_SCALE = 0.25;
+    //DEFAULT_SCALE = 1;
+
     DEFAULT_SPEED = 0.5;
     DEFAULT_DIRECTION = {x: 0, y: 0};
     DEFAULT_SIZE = {w: 51, h: 69};
@@ -217,7 +219,7 @@ function Mexican() {
             this.setDirectionY(1);
         }
 
-        if (pressedKey === 68 && !this.lifeUpTaking) {
+        if (pressedKey === 68 && !this.lifeUpTaking && this.life < 4) {
             console.log("----------------- BEFORE LIFE UP -----------------");
             console.log(mex.toString());
             console.log("----------------- -------------- -----------------");

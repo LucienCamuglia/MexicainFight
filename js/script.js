@@ -49,7 +49,7 @@ function initialize() {
 
                         lifeUpTaking = false;
                         mex2 = new Mexican();
-                        mex2.initialize({x: data[1]["Mexican"]["position"]["x"], y: data[1]["Mexican"]["position"]["x"]}, './Img/Mexicain.png');
+                        mex2.initialize({x: 290, y: data[1]["Mexican"]["position"]["y"]}, './Img/Mexicain2.png');
 
                         gameStarted = true;
                     }
@@ -67,12 +67,30 @@ function draw() {
     $('canvas').clearCanvas();
     if (mex != null)
         mex.draw($('canvas'));
+   drawMex2();
 
     bullets.forEach(function(b) {
         b.draw($('canvas'));
     });
 }
 
+function drawMex2(){
+     if (mex2 != null) {
+        $.ajax({
+            url: './php/GetPlayerOptions.php',
+            type: 'GET',
+            data: {Player2: "yes"},
+            success: function(data)
+            {
+                data = JSON.parse(data);
+                data = JSON.parse(data);
+                mex2.position.y = data["Mexican"]["position"]["y"];
+
+            }
+        })
+        mex2.draw($('canvas'));
+    }
+}
 /**
  * Update the game
  */
@@ -105,7 +123,7 @@ function updateDisplay(mexican, zone) {
 $(document).keydown(function(k) {
     mex.keydownEvent(k);
 
-    if ((k.which | k.KeyCode) === 32)
+    if (((k.which | k.KeyCode) === 32)&&(mex.bullet > 0))
     {
         tmpBullet = new Bullet();
         pos = {x: mex.getPosition().x, y: mex.getPosition().y};

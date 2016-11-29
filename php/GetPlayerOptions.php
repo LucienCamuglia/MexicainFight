@@ -13,10 +13,16 @@ if (isset($_GET["playersReady"])) {
 if (isset($_GET["playersOption"])){
     $jsonFile = file_get_contents("../GameFiles/player1.json");
     $data[0] = json_decode($jsonFile);
-    $jsonFile = file_get_contents("../GameFiles/player1.json");
+    $jsonFile = file_get_contents("../GameFiles/player2.json");
     $data[1] = json_decode($jsonFile);
    // print_r($data);
     echo json_encode($data);
 }
+
+if (isset($_GET["Player2"])){
+    $data = file_get_contents("../GameFiles/player2.json");
+     echo json_encode($data);
+}
+
 
 ?>
